@@ -1,0 +1,72 @@
+{
+    "name": "CommerceOrder",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "OrderStatus",
+            "fieldValues": "CART,PLACED,SHIPPED,PARTIALLY_SHIPPED,SETTLED,RETURNED,PARTIALLY_RETURNED,CLOSED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "custid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "placedDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "prices",
+            "otherEntityName": "commerceOrderPrice",
+            "otherEntityRelationshipName": "commerceOrder"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "shipcontainers",
+            "otherEntityName": "commerceShippingContainer",
+            "otherEntityRelationshipName": "commerceOrder"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "item",
+            "otherEntityName": "commerceItem",
+            "otherEntityRelationshipName": "commerceOrder"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "payments",
+            "otherEntityName": "commerceOrderPayment",
+            "otherEntityRelationshipName": "commerceOrder"
+        }
+    ],
+    "changelogDate": "20180913024059",
+    "javadoc": "The CommerceOrder entity.",
+    "entityTableName": "commerce_order",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}

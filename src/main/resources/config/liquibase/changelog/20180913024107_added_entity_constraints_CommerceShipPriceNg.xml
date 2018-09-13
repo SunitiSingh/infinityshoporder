@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CommerceShipPriceNg.
+    -->
+    <changeSet id="20180913024107-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="commerce_ship_container_price_id"
+                                 baseTableName="commerce_ship_price_ng"
+                                 constraintName="fk_commerce_ship_price_ng_commerce_ship_container_price_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_ship_container_price"/>
+
+    </changeSet>
+</databaseChangeLog>

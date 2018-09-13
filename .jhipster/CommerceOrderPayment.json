@@ -1,0 +1,80 @@
+{
+    "name": "CommerceOrderPayment",
+    "fields": [
+        {
+            "fieldName": "paystatus",
+            "fieldType": "PayStatus",
+            "fieldValues": "INITIAL,AUTHORIZED,SETTLED,AUTH_FAILED,SETTLE_FAILED"
+        },
+        {
+            "fieldName": "paymentAmount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "paymentType",
+            "fieldType": "CommercePaymentType",
+            "fieldValues": "CARD,EPAY"
+        },
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "billingPhone",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "commerceOrder",
+            "otherEntityName": "commerceOrder",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "card",
+            "otherEntityName": "commercePaymentCard",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceOrderPayment"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "epay",
+            "otherEntityName": "commerceEPay",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceOrderPayment"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "billingAddress",
+            "otherEntityName": "commerceBillingAddress",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceOrderPayment"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "item",
+            "otherEntityName": "commerceItem",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "payment"
+        }
+    ],
+    "changelogDate": "20180913024108",
+    "entityTableName": "commerce_order_payment",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}

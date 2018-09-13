@@ -1,0 +1,40 @@
+{
+    "name": "CommercePaymentCard",
+    "fields": [
+        {
+            "fieldName": "cardType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cardNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "expMonth",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "expYear",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20180913024109",
+    "entityTableName": "commerce_payment_card",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}

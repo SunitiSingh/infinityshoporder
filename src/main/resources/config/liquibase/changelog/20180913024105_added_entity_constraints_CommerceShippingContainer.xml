@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CommerceShippingContainer.
+    -->
+    <changeSet id="20180913024105-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="commerce_order_id"
+                                 baseTableName="commerce_shipping_container"
+                                 constraintName="fk_commerce_shipping_container_commerce_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="price_id"
+                                 baseTableName="commerce_shipping_container"
+                                 constraintName="fk_commerce_shipping_container_price_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_ship_container_price"/>
+
+    </changeSet>
+</databaseChangeLog>

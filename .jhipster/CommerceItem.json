@@ -1,0 +1,72 @@
+{
+    "name": "CommerceItem",
+    "fields": [
+        {
+            "fieldName": "skuid",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "updateDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "commerceOrder",
+            "otherEntityName": "commerceOrder",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "price",
+            "otherEntityName": "commerceItemPrice",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceItem"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "item",
+            "relationshipName": "shipcontainer",
+            "otherEntityName": "commerceShippingContainer",
+            "otherEntityField": "shipstatus",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "item",
+            "relationshipName": "payment",
+            "otherEntityName": "commerceOrderPayment",
+            "otherEntityField": "paystatus",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20180913024102",
+    "entityTableName": "commerce_item",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}

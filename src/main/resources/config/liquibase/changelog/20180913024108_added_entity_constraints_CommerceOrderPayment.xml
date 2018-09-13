@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CommerceOrderPayment.
+    -->
+    <changeSet id="20180913024108-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="commerce_order_id"
+                                 baseTableName="commerce_order_payment"
+                                 constraintName="fk_commerce_order_payment_commerce_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="card_id"
+                                 baseTableName="commerce_order_payment"
+                                 constraintName="fk_commerce_order_payment_card_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_payment_card"/>
+
+        <addForeignKeyConstraint baseColumnNames="epay_id"
+                                 baseTableName="commerce_order_payment"
+                                 constraintName="fk_commerce_order_payment_epay_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_e_pay"/>
+
+        <addForeignKeyConstraint baseColumnNames="billing_address_id"
+                                 baseTableName="commerce_order_payment"
+                                 constraintName="fk_commerce_order_payment_billing_address_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_billing_address"/>
+
+    </changeSet>
+</databaseChangeLog>

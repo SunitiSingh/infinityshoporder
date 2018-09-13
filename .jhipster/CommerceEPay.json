@@ -1,0 +1,32 @@
+{
+    "name": "CommerceEPay",
+    "fields": [
+        {
+            "fieldName": "ePayType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "ePayToken",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createDate",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20180913024110",
+    "entityTableName": "commerce_e_pay",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}

@@ -1,0 +1,30 @@
+{
+    "name": "CommerceShipContainerPrice",
+    "fields": [
+        {
+            "fieldName": "price",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ngs",
+            "otherEntityName": "commerceShipPriceNg",
+            "otherEntityRelationshipName": "commerceShipContainerPrice"
+        }
+    ],
+    "changelogDate": "20180913024106",
+    "entityTableName": "commerce_ship_container_price",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}

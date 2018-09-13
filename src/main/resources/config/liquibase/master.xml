@@ -5,6 +5,26 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024059_added_entity_CommerceOrder.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024100_added_entity_CommerceOrderPrice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024101_added_entity_CommerceOrderPriceNg.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024102_added_entity_CommerceItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024103_added_entity_CommerceItemPrice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024104_added_entity_CommerceItemPriceNg.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024105_added_entity_CommerceShippingContainer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024106_added_entity_CommerceShipContainerPrice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024107_added_entity_CommerceShipPriceNg.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024108_added_entity_CommerceOrderPayment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024109_added_entity_CommercePaymentCard.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024110_added_entity_CommerceEPay.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024111_added_entity_CommerceBillingAddress.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20180913024100_added_entity_constraints_CommerceOrderPrice.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024101_added_entity_constraints_CommerceOrderPriceNg.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024102_added_entity_constraints_CommerceItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024104_added_entity_constraints_CommerceItemPriceNg.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024105_added_entity_constraints_CommerceShippingContainer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024107_added_entity_constraints_CommerceShipPriceNg.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180913024108_added_entity_constraints_CommerceOrderPayment.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

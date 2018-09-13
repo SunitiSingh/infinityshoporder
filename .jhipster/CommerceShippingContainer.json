@@ -1,0 +1,61 @@
+{
+    "name": "CommerceShippingContainer",
+    "fields": [
+        {
+            "fieldName": "shipstatus",
+            "fieldType": "CommerceShipStatus",
+            "fieldValues": "INIT,DROPPED,CANT_SHIP,PARTIALLY_SHIPPED,SHIPPED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "carrier",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "creationDate",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "updateDate",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "commerceOrder",
+            "otherEntityName": "commerceOrder",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "price",
+            "otherEntityName": "commerceShipContainerPrice",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceShippingContainer"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "item",
+            "otherEntityName": "commerceItem",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "shipcontainer"
+        }
+    ],
+    "changelogDate": "20180913024105",
+    "entityTableName": "commerce_shipping_container",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}

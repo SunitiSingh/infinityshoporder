@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CommerceItem.
+    -->
+    <changeSet id="20180913024102-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="commerce_order_id"
+                                 baseTableName="commerce_item"
+                                 constraintName="fk_commerce_item_commerce_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="price_id"
+                                 baseTableName="commerce_item"
+                                 constraintName="fk_commerce_item_price_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_item_price"/>
+
+        <addForeignKeyConstraint baseColumnNames="commerce_items_id"
+                                 baseTableName="commerce_item_shipcontainer"
+                                 constraintName="fk_commerce_item_shipcontainer_commerce_items_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_item"/>
+        <addForeignKeyConstraint baseColumnNames="shipcontainers_id"
+                                 baseTableName="commerce_item_shipcontainer"
+                                 constraintName="fk_commerce_item_shipcontainer_shipcontainers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_shipping_container"/>
+        
+        <addForeignKeyConstraint baseColumnNames="commerce_items_id"
+                                 baseTableName="commerce_item_payment"
+                                 constraintName="fk_commerce_item_payment_commerce_items_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_item"/>
+        <addForeignKeyConstraint baseColumnNames="payments_id"
+                                 baseTableName="commerce_item_payment"
+                                 constraintName="fk_commerce_item_payment_payments_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_order_payment"/>
+        
+    </changeSet>
+</databaseChangeLog>

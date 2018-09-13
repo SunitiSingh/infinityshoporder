@@ -1,0 +1,40 @@
+{
+    "name": "CommerceOrderPrice",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "commerceOrder",
+            "otherEntityName": "commerceOrder",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "ngs",
+            "otherEntityName": "commerceOrderPriceNg",
+            "otherEntityRelationshipName": "commerceOrderPrice"
+        }
+    ],
+    "changelogDate": "20180913024100",
+    "entityTableName": "commerce_order_price",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}
