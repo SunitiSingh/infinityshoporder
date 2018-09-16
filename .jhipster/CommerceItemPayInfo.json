@@ -1,0 +1,40 @@
+{
+    "name": "CommerceItemPayInfo",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "ItemPayStatus",
+            "fieldValues": "INIT,PAID",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "orderPayment",
+            "otherEntityName": "commerceOrderPayment",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceItemPayInfo"
+        }
+    ],
+    "changelogDate": "20180914202233",
+    "entityTableName": "commerce_item_pay_info",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}

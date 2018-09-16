@@ -50,6 +50,14 @@ public class CommerceItem implements Serializable {
     @JoinColumn(unique = true)
     private CommerceItemPrice price;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CommerceItemShipInfo shipInfo;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private CommerceItemPayInfo payInfo;
+
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "commerce_item_shipcontainer",
@@ -149,6 +157,32 @@ public class CommerceItem implements Serializable {
 
     public void setPrice(CommerceItemPrice commerceItemPrice) {
         this.price = commerceItemPrice;
+    }
+
+    public CommerceItemShipInfo getShipInfo() {
+        return shipInfo;
+    }
+
+    public CommerceItem shipInfo(CommerceItemShipInfo commerceItemShipInfo) {
+        this.shipInfo = commerceItemShipInfo;
+        return this;
+    }
+
+    public void setShipInfo(CommerceItemShipInfo commerceItemShipInfo) {
+        this.shipInfo = commerceItemShipInfo;
+    }
+
+    public CommerceItemPayInfo getPayInfo() {
+        return payInfo;
+    }
+
+    public CommerceItem payInfo(CommerceItemPayInfo commerceItemPayInfo) {
+        this.payInfo = commerceItemPayInfo;
+        return this;
+    }
+
+    public void setPayInfo(CommerceItemPayInfo commerceItemPayInfo) {
+        this.payInfo = commerceItemPayInfo;
     }
 
     public Set<CommerceShippingContainer> getShipcontainers() {

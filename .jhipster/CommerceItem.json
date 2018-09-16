@@ -43,6 +43,22 @@
             "otherEntityRelationshipName": "commerceItem"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "shipInfo",
+            "otherEntityName": "commerceItemShipInfo",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceItem"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "payInfo",
+            "otherEntityName": "commerceItemPayInfo",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceItem"
+        },
+        {
             "relationshipType": "many-to-many",
             "otherEntityRelationshipName": "item",
             "relationshipName": "shipcontainer",

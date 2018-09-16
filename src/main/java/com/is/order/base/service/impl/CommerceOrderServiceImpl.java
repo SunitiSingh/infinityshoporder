@@ -42,6 +42,9 @@ public class CommerceOrderServiceImpl implements CommerceOrderService {
     @Override
     public CommerceOrderDTO save(CommerceOrderDTO commerceOrderDTO) {
         log.debug("Request to save CommerceOrder : {}", commerceOrderDTO);
+        
+        //Create default shipping payment and other basic entities
+        
         CommerceOrder commerceOrder = commerceOrderMapper.toEntity(commerceOrderDTO);
         commerceOrder = commerceOrderRepository.save(commerceOrder);
         return commerceOrderMapper.toDto(commerceOrder);

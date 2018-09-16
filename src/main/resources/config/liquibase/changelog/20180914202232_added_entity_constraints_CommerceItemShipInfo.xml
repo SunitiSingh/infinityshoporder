@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity CommerceItemShipInfo.
+    -->
+    <changeSet id="20180914202232-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="ship_container_id"
+                                 baseTableName="commerce_item_ship_info"
+                                 constraintName="fk_commerce_item_ship_info_ship_container_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_shipping_container"/>
+
+    </changeSet>
+</databaseChangeLog>

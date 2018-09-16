@@ -20,6 +20,18 @@
                                  referencedColumnNames="id"
                                  referencedTableName="commerce_item_price"/>
 
+        <addForeignKeyConstraint baseColumnNames="ship_info_id"
+                                 baseTableName="commerce_item"
+                                 constraintName="fk_commerce_item_ship_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_item_ship_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="pay_info_id"
+                                 baseTableName="commerce_item"
+                                 constraintName="fk_commerce_item_pay_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="commerce_item_pay_info"/>
+
         <addForeignKeyConstraint baseColumnNames="commerce_items_id"
                                  baseTableName="commerce_item_shipcontainer"
                                  constraintName="fk_commerce_item_shipcontainer_commerce_items_id"

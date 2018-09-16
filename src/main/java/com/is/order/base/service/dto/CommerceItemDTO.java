@@ -29,6 +29,10 @@ public class CommerceItemDTO implements Serializable {
 
     private Long priceId;
 
+    private Long shipInfoId;
+
+    private Long payInfoId;
+
     private Set<CommerceShippingContainerDTO> shipcontainers = new HashSet<>();
 
     private Set<CommerceOrderPaymentDTO> payments = new HashSet<>();
@@ -89,6 +93,22 @@ public class CommerceItemDTO implements Serializable {
         this.priceId = commerceItemPriceId;
     }
 
+    public Long getShipInfoId() {
+        return shipInfoId;
+    }
+
+    public void setShipInfoId(Long commerceItemShipInfoId) {
+        this.shipInfoId = commerceItemShipInfoId;
+    }
+
+    public Long getPayInfoId() {
+        return payInfoId;
+    }
+
+    public void setPayInfoId(Long commerceItemPayInfoId) {
+        this.payInfoId = commerceItemPayInfoId;
+    }
+
     public Set<CommerceShippingContainerDTO> getShipcontainers() {
         return shipcontainers;
     }
@@ -136,6 +156,8 @@ public class CommerceItemDTO implements Serializable {
             ", updateDate='" + getUpdateDate() + "'" +
             ", commerceOrder=" + getCommerceOrderId() +
             ", price=" + getPriceId() +
+            ", shipInfo=" + getShipInfoId() +
+            ", payInfo=" + getPayInfoId() +
             "}";
     }
 }

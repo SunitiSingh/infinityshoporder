@@ -72,6 +72,34 @@ entity CommerceShippingContainer {
 	updateDate ZonedDateTime
 }
 
+entity CommerceItemShipInfo {
+	status ItemShipStatus required
+	quantity Integer required	
+}
+
+entity CommerceItemPayInfo {
+	status ItemPayStatus required
+	quantity Integer required
+}
+
+enum ItemShipStatus {
+	INIT, SHIPPED, UNAVAILABLE
+}
+
+enum ItemPayStatus {
+	INIT, PAID
+}
+
+relationship OneToOne {
+	CommerceItem{shipInfo} to CommerceItemShipInfo,
+	CommerceItemShipInfo{shipContainer} to CommerceShippingContainer
+}
+
+relationship OneToOne {
+	CommerceItem{payInfo} to CommerceItemPayInfo,
+	CommerceItemPayInfo{orderPayment} to CommerceOrderPayment
+}
+
 entity CommerceShipContainerPrice {
 	price BigDecimal required
 }

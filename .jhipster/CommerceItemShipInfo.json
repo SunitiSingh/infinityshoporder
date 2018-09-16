@@ -1,0 +1,40 @@
+{
+    "name": "CommerceItemShipInfo",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "ItemShipStatus",
+            "fieldValues": "INIT,SHIPPED,UNAVAILABLE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "quantity",
+            "fieldType": "Integer",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "shipContainer",
+            "otherEntityName": "commerceShippingContainer",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "commerceItemShipInfo"
+        }
+    ],
+    "changelogDate": "20180914202232",
+    "entityTableName": "commerce_item_ship_info",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*",
+    "microserviceName": "infinityshoporder"
+}
