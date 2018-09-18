@@ -4,13 +4,16 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.IndexColumn;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.Objects;
 
@@ -50,21 +53,25 @@ public class CommerceOrder implements Serializable {
     @Column(name = "update_date")
     private ZonedDateTime updateDate;
 
-    @OneToMany(mappedBy = "commerceOrder")
+    @OneToMany(mappedBy = "commerceOrder", cascade = CascadeType.ALL)
+    @OrderColumn(name = "idx")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CommerceOrderPrice> prices = new HashSet<>();
+    private List<CommerceOrderPrice> prices = new ArrayList<>();
 
-    @OneToMany(mappedBy = "commerceOrder")
+    @OneToMany(mappedBy = "commerceOrder", cascade = CascadeType.ALL)
+    @OrderColumn(name = "idx")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CommerceShippingContainer> shipcontainers = new HashSet<>();
+    private List<CommerceShippingContainer> shipcontainers = new ArrayList<>();
 
-    @OneToMany(mappedBy = "commerceOrder")
+    @OneToMany(mappedBy = "commerceOrder", cascade = CascadeType.ALL)
+    @OrderColumn(name = "idx")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CommerceItem> items = new HashSet<>();
+    private List<CommerceItem> items = new ArrayList<>();
 
-    @OneToMany(mappedBy = "commerceOrder")
+    @OneToMany(mappedBy = "commerceOrder", cascade = CascadeType.ALL)
+    @OrderColumn(name = "idx")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CommerceOrderPayment> payments = new HashSet<>();
+    private List<CommerceOrderPayment> payments = new ArrayList<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -140,11 +147,11 @@ public class CommerceOrder implements Serializable {
         this.updateDate = updateDate;
     }
 
-    public Set<CommerceOrderPrice> getPrices() {
+    public List<CommerceOrderPrice> getPrices() {
         return prices;
     }
 
-    public CommerceOrder prices(Set<CommerceOrderPrice> commerceOrderPrices) {
+    public CommerceOrder prices(List<CommerceOrderPrice> commerceOrderPrices) {
         this.prices = commerceOrderPrices;
         return this;
     }
@@ -161,15 +168,15 @@ public class CommerceOrder implements Serializable {
         return this;
     }
 
-    public void setPrices(Set<CommerceOrderPrice> commerceOrderPrices) {
+    public void setPrices(List<CommerceOrderPrice> commerceOrderPrices) {
         this.prices = commerceOrderPrices;
     }
 
-    public Set<CommerceShippingContainer> getShipcontainers() {
+    public List<CommerceShippingContainer> getShipcontainers() {
         return shipcontainers;
     }
 
-    public CommerceOrder shipcontainers(Set<CommerceShippingContainer> commerceShippingContainers) {
+    public CommerceOrder shipcontainers(List<CommerceShippingContainer> commerceShippingContainers) {
         this.shipcontainers = commerceShippingContainers;
         return this;
     }
@@ -186,15 +193,15 @@ public class CommerceOrder implements Serializable {
         return this;
     }
 
-    public void setShipcontainers(Set<CommerceShippingContainer> commerceShippingContainers) {
+    public void setShipcontainers(List<CommerceShippingContainer> commerceShippingContainers) {
         this.shipcontainers = commerceShippingContainers;
     }
 
-    public Set<CommerceItem> getItems() {
+    public List<CommerceItem> getItems() {
         return items;
     }
 
-    public CommerceOrder items(Set<CommerceItem> commerceItems) {
+    public CommerceOrder items(List<CommerceItem> commerceItems) {
         this.items = commerceItems;
         return this;
     }
@@ -211,15 +218,15 @@ public class CommerceOrder implements Serializable {
         return this;
     }
 
-    public void setItems(Set<CommerceItem> commerceItems) {
+    public void setItems(List<CommerceItem> commerceItems) {
         this.items = commerceItems;
     }
 
-    public Set<CommerceOrderPayment> getPayments() {
+    public List<CommerceOrderPayment> getPayments() {
         return payments;
     }
 
-    public CommerceOrder payments(Set<CommerceOrderPayment> commerceOrderPayments) {
+    public CommerceOrder payments(List<CommerceOrderPayment> commerceOrderPayments) {
         this.payments = commerceOrderPayments;
         return this;
     }
@@ -236,7 +243,7 @@ public class CommerceOrder implements Serializable {
         return this;
     }
 
-    public void setPayments(Set<CommerceOrderPayment> commerceOrderPayments) {
+    public void setPayments(List<CommerceOrderPayment> commerceOrderPayments) {
         this.payments = commerceOrderPayments;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove

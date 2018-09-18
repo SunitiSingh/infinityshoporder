@@ -1,20 +1,33 @@
 package com.is.order.base.service.impl;
 
-import com.is.order.base.service.CommerceOrderService;
-import com.is.order.base.domain.CommerceOrder;
-import com.is.order.base.repository.CommerceOrderRepository;
-import com.is.order.base.service.dto.CommerceOrderDTO;
-import com.is.order.base.service.mapper.CommerceOrderMapper;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import java.util.Optional;
+import com.is.order.base.domain.CommerceOrder;
+import com.is.order.base.domain.CommerceOrderPayment;
+import com.is.order.base.domain.CommerceShippingContainer;
+import com.is.order.base.domain.enumeration.CommerceShipStatus;
+import com.is.order.base.domain.enumeration.PayStatus;
+import com.is.order.base.repository.CommerceOrderPaymentRepository;
+import com.is.order.base.repository.CommerceOrderRepository;
+import com.is.order.base.repository.CommerceShippingContainerRepository;
+import com.is.order.base.service.CommerceOrderService;
+import com.is.order.base.service.dto.CommerceOrderDTO;
+import com.is.order.base.service.dto.CommerceOrderPaymentDTO;
+import com.is.order.base.service.dto.CommerceShippingContainerDTO;
+import com.is.order.base.service.mapper.CommerceOrderMapper;
+import com.is.order.base.service.mapper.CommerceOrderPaymentMapper;
+import com.is.order.base.service.mapper.CommerceShippingContainerMapper;
 /**
  * Service Implementation for managing CommerceOrder.
  */
@@ -27,10 +40,18 @@ public class CommerceOrderServiceImpl implements CommerceOrderService {
     private final CommerceOrderRepository commerceOrderRepository;
 
     private final CommerceOrderMapper commerceOrderMapper;
+    
+    private final CommerceShippingContainerMapper commerceShippingContainerMapper;
+    
+    private final CommerceOrderPaymentMapper commerceOrderPaymentMapper;
 
-    public CommerceOrderServiceImpl(CommerceOrderRepository commerceOrderRepository, CommerceOrderMapper commerceOrderMapper) {
+    public CommerceOrderServiceImpl(CommerceOrderRepository commerceOrderRepository, CommerceOrderMapper commerceOrderMapper,
+    					CommerceShippingContainerMapper commerceShippingContainerMapper,
+    					CommerceOrderPaymentMapper commerceOrderPaymentMapper) {
         this.commerceOrderRepository = commerceOrderRepository;
         this.commerceOrderMapper = commerceOrderMapper;
+        this.commerceShippingContainerMapper = commerceShippingContainerMapper;
+        this.commerceOrderPaymentMapper = commerceOrderPaymentMapper;
     }
 
     /**
@@ -43,11 +64,48 @@ public class CommerceOrderServiceImpl implements CommerceOrderService {
     public CommerceOrderDTO save(CommerceOrderDTO commerceOrderDTO) {
         log.debug("Request to save CommerceOrder : {}", commerceOrderDTO);
         
-        //Create default shipping payment and other basic entities
+        log.error("Commerce Order ID " + commerceOrderDTO.getId());
         
-        CommerceOrder commerceOrder = commerceOrderMapper.toEntity(commerceOrderDTO);
-        commerceOrder = commerceOrderRepository.save(commerceOrder);
-        return commerceOrderMapper.toDto(commerceOrder);
+        if(commerceOrderDTO.getId() ==  null) {
+        
+	        //Create default shipping payment and other basic entities
+	        CommerceShippingContainerDTO commerceShippingContainerDTO = new CommerceShippingContainerDTO();
+	        CommerceOrderPaymentDTO commerceOrderPaymentDTO = new CommerceOrderPaymentDTO();
+	        
+	        commerceShippingContainerDTO.setShipstatus(CommerceShipStatus.INIT);
+	        commerceShippingContainerDTO.setCreationDate(ZonedDateTime.now(ZoneId.systemDefault()));
+	        commerceOrderPaymentDTO.setPaystatus(PayStatus.INITIAL);
+	        
+	        CommerceShippingContainer commerceShippingContainer = commerceShippingContainerMapper.toEntity(commerceShippingContainerDTO);
+	        //commerceShippingContainer = commerceShippingContainerRepository.save(commerceShippingContainer);
+	        CommerceOrderPayment commerceOrderPayment = commerceOrderPaymentMapper.toEntity(commerceOrderPaymentDTO);
+	        //commerceOrderPayment = commerceOrderPaymentRepository.save(commerceOrderPayment);
+	        
+	        
+	        CommerceOrder commerceOrder = commerceOrderMapper.toEntity(commerceOrderDTO);
+	        
+	        commerceShippingContainer.setCommerceOrder(commerceOrder);
+	        commerceOrderPayment.setCommerceOrder(commerceOrder);
+	        
+	        List<CommerceShippingContainer> commerceShippingContainers = new ArrayList<CommerceShippingContainer>();
+	        commerceShippingContainers.add(commerceShippingContainer);
+	                
+	        commerceOrder.setShipcontainers(commerceShippingContainers);
+	        
+	        List<CommerceOrderPayment> commerceOrderPayments = new ArrayList<CommerceOrderPayment>();
+	        commerceOrderPayments.add(commerceOrderPayment);
+	        
+	        commerceOrder.setPayments(commerceOrderPayments);
+	        commerceOrder.setCreationDate(ZonedDateTime.now(ZoneId.systemDefault()));
+	        
+	        commerceOrder = commerceOrderRepository.save(commerceOrder);
+	        return commerceOrderMapper.toDto(commerceOrder);
+        } else {
+        	CommerceOrder commerceOrder = commerceOrderMapper.toEntity(commerceOrderDTO);
+        	commerceOrder.setUpdateDate(ZonedDateTime.now(ZoneId.systemDefault()));
+        	commerceOrder = commerceOrderRepository.save(commerceOrder);
+        	return commerceOrderMapper.toDto(commerceOrder);
+        }
     }
 
     /**
